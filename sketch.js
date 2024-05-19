@@ -1,12 +1,16 @@
 
 let img;
-let slice_window = 50;
+var slice_window = 50;
 let sliced_img = [];
-let choice_filter = 'THRESHOLD';
+let choice_filter = '';
+var removeGrid = false;
+var removeBackgroundImage = false;
+var saveImg = false;
 
 // Load the image.
 function preload() {
-    img = loadImage('assets/test.jpeg');
+    img = loadImage('assets/test_01.jpg');
+    
 }
 
 function getSpecificIndex(x, y, img) {
@@ -15,10 +19,13 @@ function getSpecificIndex(x, y, img) {
 
 function setup() {
 
-    createCanvas(img.width-30, img.height-20);
+    img.resize(300, 300);
+    var myCanvas = createCanvas(img.width, img.height);
+    myCanvas.parent("containCanvas");
+
     background(255);
     // Display the image.
-    // image(img, 0, 0);
+    
     filter(GRAY);
     console.log(img.width, img.height);
     console.log(width, height);
@@ -32,15 +39,7 @@ function setup() {
     }
 
     // create the grid
-    for (var x = 0; x < img.width; x += slice_window) {
-        for (var y = 0; y < img.height; y += slice_window) {
-            stroke(0);
-            strokeWeight(1);
-            line(x, 0, x, height);
-            line(0, y, width, y);
-        }
-    }
-
+    
 }
 
 function removeImagePortion(index){
@@ -53,10 +52,6 @@ function mousePressed() {
         image(sliced_img[getRandomPortion], mouseX-2, mouseY-2);
         removeImagePortion(getRandomPortion);
     }
-    
-    
-
-
     if (choice_filter == 'GRAY'){
         filter(GRAY);
     }
@@ -66,9 +61,29 @@ function mousePressed() {
 }
 
 
+
 function keyTyped() {
 
     if (key === 's' || key === 'S') {
+        saveCanvas('edited_image', 'jpg');
+        print("saving image");
+    }
+    return false;
+}
+
+function draw() {
+    
+    if(removeGrid == false){
+        for (var x = 0; x < img.width; x += slice_window) {
+            for (var y = 0; y < img.height; y += slice_window) {
+                stroke(0);
+                strokeWeight(1);
+                line(x, 0, x, height);
+                line(0, y, width, y);
+            }
+        }
+    }
+    if(removeGrid == true){
         for (var x = 0; x < img.width; x += slice_window) {
             for (var y = 0; y < img.height; y += slice_window) {
                 stroke(255);
@@ -77,13 +92,8 @@ function keyTyped() {
                 line(0, y, width, y);
             }
         }
-        saveCanvas('myCanvas', 'jpg');
-        print("saving image");
     }
-    return false;
-}
 
-function draw() {
     
     // ellipse(50, 50, 80, 80);
 }

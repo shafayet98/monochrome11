@@ -1,12 +1,51 @@
-canvas {
-  border: 2px solid black;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+body{
+  font-family: 'Space Mono', monospace !important;
 }
 
-#removeGrid{
+.saveNote{
+  font-size: 10px;
+}
+.mainContainer{
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+canvas {
   border: 2px solid black;
-  width: 100px;
+}
+
+
+.btn{
+  /* border: 2px solid black; */
+  /* display: inline-block; */
+  font-size: 10px;
+  width: 100% !important;
+}
+
+
+/* fonts */
+.space-mono-regular {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.space-mono-regular-italic {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.space-mono-bold {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.space-mono-bold-italic {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: italic;
 }
