@@ -2,7 +2,7 @@
 let img;
 let slice_window = 50;
 let sliced_img = [];
-let choice_filter = 'THRESHOLD';
+let choice_filter = 'GRAY';
 
 // Load the image.
 function preload() {
@@ -43,19 +43,26 @@ function setup() {
 
 }
 
+function removeImagePortion(index){
+    sliced_img.splice(sliced_img[index],1);
+}
+
 function mousePressed() {
-    console.log(sliced_img.length);
-    let getRandomPortion = floor(random(0, sliced_img.length));
-    image(sliced_img[getRandomPortion], mouseX-2, mouseY-2);
+    if(sliced_img.length > 0){
+        let getRandomPortion = floor(random(0, sliced_img.length));
+        image(sliced_img[getRandomPortion], mouseX-2, mouseY-2);
+        removeImagePortion(getRandomPortion);
+    }
+    
+    
+
+
     if (choice_filter == 'GRAY'){
         filter(GRAY);
     }
-    else if(choice_filter == 'THRESHOLD'){
+    if(choice_filter == 'THRESHOLD'){
         filter(THRESHOLD);
     }
-
-
-    
 }
 
 
