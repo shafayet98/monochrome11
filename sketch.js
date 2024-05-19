@@ -2,7 +2,7 @@
 let img;
 let slice_window = 50;
 let sliced_img = [];
-let choice_filter = 'GRAY';
+let choice_filter = 'THRESHOLD';
 
 // Load the image.
 function preload() {
